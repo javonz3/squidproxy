@@ -4,7 +4,7 @@ set user [exec whoami]
 set param [lindex $argv 0]
 set pwd [lindex $argv 1]
 
-spawn sudo apt-get install apache2-utils
+spawn sudo $param
 set timeout 2
 expect "\[sudo\] password for osboxes: "
 set timeout 2
