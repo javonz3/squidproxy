@@ -29,8 +29,8 @@ print user
 if os.path.isdir(dir_): # test if directory exists
 	os.chdir(dir_); # cd directory
 
-	for i in commands.split('\n'):
-		print i
+	for i in commands.split('\n'): # split commands
+		os.system(i); # execute commands
 else: 
 	print 'Directory %s does not exists!' % dir_;
 	sys.exit(); # quit script
