@@ -65,10 +65,10 @@ http_access allow ncsa_users
 """
 user = os.popen('users').read().strip(); #get the current user
 os.chdir(dir_); # cd directory
-list_of_users=[]
-adduser=""
-pwd=""
-log = "log.log"
+list_of_users = []; # initializing list
+adduser = ""
+pwd = ""
+log = "log.log";
 
 while True: # Repeat the process
 	client_ip = raw_input("Enter client's IP: ") 
