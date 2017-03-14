@@ -96,9 +96,11 @@ if os.path.isdir(dir_): # test if directory exists
 		if i:
 			check = os.popen("cat /etc/squid3/%s |grep '%s'" % (squid, i)).read().strip()
 			if not check: # if null or empty
-				
 				write_to_file(squid, i); # writing into conf file
+
 	os.chdir(curr_dir)
+	for i in list_of_users:
+		outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd))
 	os.system("service squid3 restart"); # restart squid
 else: 
 	print 'Directory %s does not exists!' % dir_;
