@@ -5,6 +5,7 @@ import os
 import re
 from time import gmtime, strftime
 import sys
+import getpass
 
 # date and time
 def date_time():
@@ -36,7 +37,12 @@ list_of_users = []; # initializing list
 adduser = ""
 pwd = ""
 log = "log.log";
-
+admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
+# admin_passwd = raw_input("Enter your administrative password: "); # asking for new username
+test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
+if not re.search('Welcome', test_login):
+	print 'Invalid password!'
+	sys.exit()
 while True: # Repeat the process
 	# client_ip = raw_input("Enter client's IP: ") 
 	adduser = raw_input("Client's user: "); # asking for new username
@@ -67,7 +73,7 @@ if os.path.isdir(dir_): # test if directory exists
 		if re.search('install', i):
 			i=i.split()
 			i=i[-1]
-
+			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
 		os.system(i); # execute commands
 	if os.path.isfile("%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
