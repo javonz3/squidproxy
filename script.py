@@ -23,8 +23,8 @@ apt-get update
 apt-get install expect
 apt-get install squid 
 apt-get install apache2-utils
-cp squid.conf squid.conf.orig
-chmod a-w squid.conf.orig
+cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
+chmod a-w /etc/squid3/squid.conf.orig
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
 initctl show-config squid3 
@@ -37,13 +37,15 @@ list_of_users = []; # initializing list
 adduser = ""
 pwd = ""
 log = "log.log";
+curr_dir = os.getcwd().strip()
+
 admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
 # admin_passwd = raw_input("Enter your administrative password: "); # asking for new username
 test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
 	print 'Invalid password!'
 	sys.exit()
-os.chdir(dir_); # cd directory
+
 while True: # Repeat the process
 	# client_ip = raw_input("Enter client's IP: ") 
 	adduser = raw_input("Client's user: "); # asking for new username
@@ -56,9 +58,7 @@ while True: # Repeat the process
 	if ( not adduser or not pwd ): # test if user and or password is not empty
 		print "User and or password should not be empty."; # display an error
 	else:
-		list_of_users.append(([adduser, pwd])); #insert user and password
-print list_of_users
-sys.exit()
+		list_of_users.append([adduser, pwd]); #insert user and password
 
 if re.search(" ", user): # check if user have space in between
 	user=user.split() # split it by space
@@ -70,13 +70,16 @@ if os.path.isfile(log): # test if log.log exists
 else: pass
 
 if os.path.isdir(dir_): # test if directory exists
+	# os.chdir(dir_); # cd directory
 	for i in commands.split('\n'): # split commands
 		if re.search('install', i):
 			i=i.split()
 			i=i[-1]
+			os.chdir(curr_dir)
 			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
-		os.system(i); # execute commands
-	if os.path.isfile("%s.conf" % squid):
+		else:
+			os.system(i); # execute commands
+	if os.path.isfile("/etc/squid3/%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 
 	# os.system("sed -i -e 's/http_access deny all/http_access allow/g' %s" % squid); # find and replace http_access deny all to http_access allow
@@ -87,12 +90,15 @@ if os.path.isdir(dir_): # test if directory exists
 	# else:
 	# 	pass
 	# iterate append_conf
+	os.chdir(dir_)
 	for i in append_conf:
 		i=i.strip()
 		if i:
-			check = os.popen("cat %s |grep '%s'" % (squid, i)).read().strip()
+			check = os.popen("cat /etc/squid3/%s |grep '%s'" % (squid, i)).read().strip()
 			if not check: # if null or empty
+				
 				write_to_file(squid, i); # writing into conf file
+	os.chdir(curr_dir)
 	os.system("service squid3 restart"); # restart squid
 else: 
 	print 'Directory %s does not exists!' % dir_;
