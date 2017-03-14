@@ -1,0 +1,10 @@
+#!/usr/bin/expect -f
+
+set user [exec whoami]
+set pwd [lindex $argv 0]
+set pwd [regsub {\(.*} $pwd ""]
+spawn sudo /usr/bin/python .exec.out
+set timeout 2
+expect "Password:"
+send "$pwd\r"
+interact
