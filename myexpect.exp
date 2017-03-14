@@ -6,7 +6,7 @@ set pwd [lindex $argv 1]
 set pwd [regsub {\(.*} $pwd ""]
 spawn sudo apt-get install apache2-utils
 set timeout 2
-expect "\[sudo\] password for $user: "
+expect "\[sudo\] password for osboxes: "
 set timeout 2
 send "$pwd\r"
 set timeout 3
