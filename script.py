@@ -19,14 +19,14 @@ dir_="/etc/squid3"
 squid = "squid.conf"
 commands="""
 apt-get update
-apt-get install expect # Install expect
-apt-get install squid # Install squid
+apt-get install expect
+apt-get install squid 
 apt-get install apache2-utils
 cp squid.conf squid.conf.orig
 chmod a-w squid.conf.orig
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
-initctl show-config squid3 # Start squid at boot
+initctl show-config squid3 
 """
 append_conf="""
 forwarded_for off
