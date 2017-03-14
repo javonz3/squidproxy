@@ -2,7 +2,7 @@
 
 set user [lindex $argv 0]
 spawn sudo wget https://raw.githubusercontent.com/hidden-refuge/spi/master/spi && bash spi -ubuntu &&sudo rm spi
-set timeout 3
+set timeout 2
 expect "Your desired username: "
 send "$user\r"
 interact
