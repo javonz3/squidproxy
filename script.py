@@ -3,7 +3,10 @@
 
 import os
 import re
-
+from time import gmtime, strftime
+# date and time
+def date_time():
+	return strftime("%Y-%m-%d %H:%M:%S", gmtime()); # return data with Year-month-day Hour-minute-second
 # Append data on existing file
 def write_to_file(filename, text):
 	with open(filename, mode='a+') as outfile:
@@ -11,6 +14,7 @@ def write_to_file(filename, text):
 		outfile.close()
 
 dir_="/etc/squid3"
+squid = "squid.conf"
 commands="""
 apt-get update
 apt-get install expect # Install expect
@@ -20,17 +24,33 @@ service squid3 restart
 initctl show-config squid3 # Start squid at boot
 """
 user = os.popen('users').read().strip(); #get the current user
+os.chdir(dir_); # cd directory
+list_of_users=[]
+adduser=""
+pwd=""
+while True:
+	adduser = raw_input('Enter new user: ')
+	pwd = raw_input("Enter User's password: ")
+	ask = raw_input("Do you want to add more <Y/n>").strip()
+	if ans.lower() != 'y':
+		break
+	if ( not adduser or not pwd ):
+		print "User and or password should not be empty."
+	else:
+		list_of_users.append(([adduser, pwd]))
+print list_of_users
+sys.exit()
+
 if re.search(" ", user): # check if user have space in between
 	user=user.split() # split it by space
 	user=user[0] # get user at index zero
 else: pass
-print user
 
 if os.path.isdir(dir_): # test if directory exists
-	os.chdir(dir_); # cd directory
-
 	for i in commands.split('\n'): # split commands
 		os.system(i); # execute commands
+	if os.path.isfile("%s.conf" % squid):
+		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 else: 
 	print 'Directory %s does not exists!' % dir_;
 	sys.exit(); # quit script
