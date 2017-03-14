@@ -1,13 +1,13 @@
 #!/usr/bin/expect -f
 
-set user [exec whoami]
-set pwd [lindex $argv 0]
+set user [lindex $argv 0]
+set pwd [lindex $argv 1]
 set pwd [regsub {\(.*} $pwd ""]
-spawn sudo login $user
+spawn sudo htpasswd /etc/squid3/squid_passwd $user
 set timeout 2
-expect "Password:"
+expect "New password:"
 send "$pwd\r"
 set timeout 2
-expect "login:"
-send "\x04\r"
+expect "Re-type new password:"
+send "$pwd\r"
 interact
