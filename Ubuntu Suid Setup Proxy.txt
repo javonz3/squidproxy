@@ -1,7 +1,3 @@
-
-wget https://raw.githubusercontent.com/hidden-refuge/spi/master/spi && bash spi -ubuntu &&sudo rm spi
-
-
 http_port 31335
 cache deny all
 hierarchy_stoplist cgi-bin ?

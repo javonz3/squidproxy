@@ -38,7 +38,7 @@ pwd = ""
 log = "log.log";
 
 while True: # Repeat the process
-	client_ip = raw_input("Enter client's IP: ") 
+	# client_ip = raw_input("Enter client's IP: ") 
 	adduser = raw_input("Client's user: "); # asking for new username
 	pwd = raw_input("Client's password: "); # asking for new password
 	ask = raw_input("Do you want to add more <Y/n>").strip(); # Asking to continue
@@ -68,18 +68,20 @@ if os.path.isdir(dir_): # test if directory exists
 	if os.path.isfile("%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 
-	os.system("sed -i -e 's/http_access deny all/http_access allow/g' %s" % squid); # find and replace http_access deny all to http_access allow
-	outp = os.popen("cat %s |grep 'http_access deny all'").read().strip()
-	if outp:
-		print '%s not being replace.' % squid
-		raw_input('Error here.')
-	else:
-		pass
+	# os.system("sed -i -e 's/http_access deny all/http_access allow/g' %s" % squid); # find and replace http_access deny all to http_access allow
+	# outp = os.popen("cat %s |grep 'http_access deny all'").read().strip()
+	# if outp:
+	# 	print '%s not being replace.' % squid
+	# 	raw_input('Error here.')
+	# else:
+	# 	pass
 	# iterate append_conf
-	for i in append_conf.split("\n"):
-		check = os.popen("cat %s |grep '%s'" % (squid, i)).read().strip()
-		if not check: # if null or empty
-			write_to_file(squid, i); # writing into conf file
+	for i in append_conf:
+		i=i.strip()
+		if i:
+			check = os.popen("cat %s |grep '%s'" % (squid, i)).read().strip()
+			if not check: # if null or empty
+				write_to_file(squid, i); # writing into conf file
 	os.system("service squid3 restart"); # restart squid
 else: 
 	print 'Directory %s does not exists!' % dir_;
