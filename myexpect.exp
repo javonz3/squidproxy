@@ -4,5 +4,5 @@ set argv [lindex $argv 0]
 spawn sudo $argv
 set timeout 2
 expect "Do you want to continue? \[Y\/n\] "
-send "Y\r"
+send "\Y\r"
 interact
