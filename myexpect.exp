@@ -7,8 +7,9 @@ set pwd [regsub {\(.*} $pwd ""]
 spawn sudo apt-get install apache2-utils
 set timeout 2
 expect "\[sudo\] password for $user: "
-send "$pwd\r"
 set timeout 2
+send "$pwd\r"
+set timeout 3
 expect "Do you want to continue? \[Y\/n\] "
 send "Y\r"
 interact
