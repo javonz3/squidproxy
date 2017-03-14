@@ -4,14 +4,11 @@ set user [exec whoami]
 set argv [lindex $argv 0]
 set pwd [lindex $argv 1]
 set pwd [regsub {\(.*} $pwd ""]
-spawn sudo "$argv"
+spawn sudo $argv
 set timeout 2
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
 set timeout 2
-expect "\[sudo\] password for $user: "
-send "$pwd\r"
-set timeout 3
 expect "Do you want to continue? \[Y\/n\] "
 send "Y\r"
 interact
