@@ -9,10 +9,4 @@ set timeout 2
 expect "\[sudo\] password for $user_: "
 set timeout 2
 send "$pwd\r"
-set timeout 2
-expect "New password: "
-send "$user_pwd\r"
-set timeout 2
-expect "Re-type new password: "
-send "$user_pwd\r"
 interact
