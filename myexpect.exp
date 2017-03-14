@@ -3,6 +3,6 @@
 set argv [lindex $argv 0]
 spawn sudo $argv
 set timeout 2
-expect "expect "Do you want to continue? [Y/n]""
+expect "Do you want to continue? [Y/n]"
 send "Y\r"
 interact

@@ -1,7 +1,5 @@
-HOW TO SETUP PROXY SERVER:
 
-Run the following one line command to download the SPI installer file to your Ubuntu server, execute it and let it install and configure Squid (after that the SPI installer file will be removed from your server):
-wget https://raw.githubusercontent.com/hidden-refuge/spi/master/spi && bash spi -ubuntu && rm spi
+wget https://raw.githubusercontent.com/hidden-refuge/spi/master/spi && bash spi -ubuntu &&sudo rm spi
 
 
 http_port 31335
