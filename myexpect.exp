@@ -8,6 +8,9 @@ spawn sudo "$argv"
 set timeout 2
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
+set timeout 2
+expect "\[sudo\] password for $user: "
+send "$pwd\r"
 set timeout 3
 expect "Do you want to continue? \[Y\/n\] "
 send "Y\r"
