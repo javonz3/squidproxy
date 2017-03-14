@@ -101,6 +101,13 @@ if os.path.isdir(dir_): # test if directory exists
 	if os.path.isfile("%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 
+	os.system("sed -i -e 's/http_access deny all/http_access allow/g' %s" % squid); # find and replace http_access deny all to http_access allow
+	outp = os.popen("cat %s |grep 'http_access deny all'").read().strip()
+	if outp:
+		print '%s not being replace.' % squid
+		raw_input('Error here.')
+	else:
+		pass
 	# iterate append_conf
 	for i in append_conf.split("\n"):
 		check = os.popen("cat %s |grep '%s'" % (squid, i)).read().strip()
