@@ -4,6 +4,8 @@
 import os
 import re
 from time import gmtime, strftime
+import sys
+
 # date and time
 def date_time():
 	return strftime("%Y-%m-%d %H:%M:%S", gmtime()); # return data with Year-month-day Hour-minute-second
