@@ -34,4 +34,3 @@ else:
 	print 'Directory %s does not exists!' % dir_;
 	sys.exit(); # quit script
 
-https://cracken2015@bitbucket.org/cracken2015/squid_ubuntu.git
