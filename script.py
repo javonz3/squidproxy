@@ -28,11 +28,11 @@ os.chdir(dir_); # cd directory
 list_of_users=[]
 adduser=""
 pwd=""
-while True:
-	adduser = raw_input('Enter new user: ')
-	pwd = raw_input("Enter User's password: ")
-	ask = raw_input("Do you want to add more <Y/n>").strip()
-	if ask.lower() != 'y':
+while True: # Repeat the process
+	adduser = raw_input('Enter new user: '); # asking for new username
+	pwd = raw_input("Enter User's password: "); # asking for new password
+	ask = raw_input("Do you want to add more <Y/n>").strip(); # Asking to continue
+	if ask.lower() != 'y': # if ask var is not equal to Y or y
 		break
 	if ( not adduser or not pwd ): # test if user and or password is not empty
 		print "User and or password should not be empty."; # display an error
