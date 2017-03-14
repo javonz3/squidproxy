@@ -32,7 +32,7 @@ initctl show-config squid3
 append_conf = os.popen("cat 'Ubuntu Suid Setup Proxy.txt'").readlines()
 
 user = os.popen('users').read().strip(); #get the current user
-os.chdir(dir_); # cd directory
+
 list_of_users = []; # initializing list
 adduser = ""
 pwd = ""
@@ -43,6 +43,7 @@ test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
 	print 'Invalid password!'
 	sys.exit()
+os.chdir(dir_); # cd directory
 while True: # Repeat the process
 	# client_ip = raw_input("Enter client's IP: ") 
 	adduser = raw_input("Client's user: "); # asking for new username
