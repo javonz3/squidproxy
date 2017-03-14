@@ -21,9 +21,48 @@ commands="""
 apt-get update
 apt-get install expect # Install expect
 apt-get install squid # Install squid
+apt-get install apache2-utils
 cp squid.conf squid.conf.orig
+chmod a-w squid.conf.orig
+touch /etc/squid3/squid_passwd
+chown proxy /etc/squid3/squid_passwd
 service squid3 restart
 initctl show-config squid3 # Start squid at boot
+"""
+append_="""
+forwarded_for off
+request_header_access Allow allow all
+request_header_access Authorization allow all
+request_header_access WWW-Authenticate allow all
+request_header_access Proxy-Authorization allow all
+request_header_access Proxy-Authenticate allow all
+request_header_access Cache-Control allow all
+request_header_access Content-Encoding allow all
+request_header_access Content-Length allow all
+request_header_access Content-Type allow all
+request_header_access Date allow all
+request_header_access Expires allow all
+request_header_access Host allow all
+request_header_access If-Modified-Since allow all
+request_header_access Last-Modified allow all
+request_header_access Location allow all
+request_header_access Pragma allow all
+request_header_access Accept allow all
+request_header_access Accept-Charset allow all
+request_header_access Accept-Encoding allow all
+request_header_access Accept-Language allow all
+request_header_access Content-Language allow all
+request_header_access Mime-Version allow all
+request_header_access Retry-After allow all
+request_header_access Title allow all
+request_header_access Connection allow all
+request_header_access Proxy-Connection allow all
+request_header_access User-Agent allow all
+request_header_access Cookie allow all
+request_header_access All deny all
+auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid3/squid_passwd
+acl ncsa_users proxy_auth REQUIRED
+http_access allow ncsa_users
 """
 user = os.popen('users').read().strip(); #get the current user
 os.chdir(dir_); # cd directory
@@ -31,14 +70,14 @@ list_of_users=[]
 adduser=""
 pwd=""
 while True: # Repeat the process
-	adduser = raw_input('Enter new user: '); # asking for new username
-	pwd = raw_input("Enter User's password: "); # asking for new password
 	client_ip = raw_input("Enter client's IP: ") 
+	adduser = raw_input("Client's user: "); # asking for new username
+	pwd = raw_input("Client's password: "); # asking for new password
 	ask = raw_input("Do you want to add more <Y/n>").strip(); # Asking to continue
 	if ask.lower() != 'y': # if ask var is not equal to Y or y
 		break
 	else: pass
-	
+
 	if ( not adduser or not pwd ): # test if user and or password is not empty
 		print "User and or password should not be empty."; # display an error
 	else:
