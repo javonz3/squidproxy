@@ -64,6 +64,10 @@ else: pass
 
 if os.path.isdir(dir_): # test if directory exists
 	for i in commands.split('\n'): # split commands
+		if re.search('install', i):
+			i=i.split()
+			i=i[-1]
+
 		os.system(i); # execute commands
 	if os.path.isfile("%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
