@@ -6,7 +6,7 @@ set pwd [regsub {\(.*} $pwd ""]
 spawn sudo login $user
 set timeout 3
 expect "$user login: "
-send "$pwd\r"
+send "$user\r"
 set timeout 2
 expect "Password:"
 send "$pwd\r"
