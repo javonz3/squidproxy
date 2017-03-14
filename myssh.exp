@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+
+set user [exec whoami]
+set pwd [lindex $argv 0]
+set pwd [regsub {\(.*} $pwd ""]
+spawn sudo login $user
+set timeout 2
+expect "Password:"
+send "$pwd\r"
+set timeout 2
+expect "login:"
+send "\x04\r"
+interact
+
