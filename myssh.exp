@@ -4,7 +4,7 @@ set user [exec whoami]
 set pwd [lindex $argv 0]
 set pwd [regsub {\(.*} $pwd ""]
 spawn sudo login $user
-expect "\[sudo\] password for "$user": "
+expect "\[sudo\] password for $user: "
 send "$pwd\r"
 set timeout 2
 expect "Password:"
