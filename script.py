@@ -24,6 +24,7 @@ if re.search(" ", user): # check if user have space in between
 	user=user.split() # split it by space
 	user=user[0] # get user at index zero
 else: pass
+print user
 
 if os.path.isdir(dir_): # test if directory exists
 	os.chdir(dir_); # cd directory
