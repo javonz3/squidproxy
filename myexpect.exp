@@ -4,7 +4,7 @@ set user [exec whoami]
 set argv [lindex $argv 0]
 set pwd [lindex $argv 1]
 set pwd [regsub {\(.*} $pwd ""]
-spawn sudo $argv
+spawn sudo apt-get install apache2-utils
 set timeout 2
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
