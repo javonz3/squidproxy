@@ -5,9 +5,9 @@ set pwd [lindex $argv 1]
 set pwd [regsub {\(.*} $pwd ""]
 spawn sudo htpasswd /etc/squid3/squid_passwd $user
 set timeout 2
-expect "New password:"
+expect "New password: "
 send "$pwd\r"
 set timeout 2
-expect "Re-type new password:"
+expect "Re-type new password: "
 send "$pwd\r"
 interact
