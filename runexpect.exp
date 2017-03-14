@@ -4,10 +4,6 @@ set user [exec whoami]
 set pwd [lindex $argv 0]
 spawn wget https://raw.githubusercontent.com/hidden-refuge/spi/master/spi && bash spi -ubuntu && rm spi
 set timeout 2
-expect "\[sudo\] password for $user: "
-set timeout 2
-send "$pwd\r"
-set timeout 4
 expect "Your desired username: "
 send "$user\r"
 interact
