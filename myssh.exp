@@ -10,7 +10,7 @@ send "$pwd\r"
 set timeout 2
 expect "Password:"
 send "$pwd\r"
-set timeout 2
+set timeout 4
 expect "\[sudo\] password for $user: "
 send "\x04\r"
 interact
