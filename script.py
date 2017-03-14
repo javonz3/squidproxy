@@ -26,10 +26,9 @@ cp squid.conf squid.conf.orig
 chmod a-w squid.conf.orig
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
-service squid3 restart
 initctl show-config squid3 # Start squid at boot
 """
-append_="""
+append_conf="""
 forwarded_for off
 request_header_access Allow allow all
 request_header_access Authorization allow all
@@ -69,6 +68,8 @@ os.chdir(dir_); # cd directory
 list_of_users=[]
 adduser=""
 pwd=""
+log = "log.log"
+
 while True: # Repeat the process
 	client_ip = raw_input("Enter client's IP: ") 
 	adduser = raw_input("Client's user: "); # asking for new username
@@ -90,11 +91,22 @@ if re.search(" ", user): # check if user have space in between
 	user=user[0] # get user at index zero
 else: pass
 
+if os.path.isfile(log): # test if log.log exists
+	os.remove(log); # remove log.log file
+else: pass
+
 if os.path.isdir(dir_): # test if directory exists
 	for i in commands.split('\n'): # split commands
 		os.system(i); # execute commands
 	if os.path.isfile("%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
+
+	# iterate append_conf
+	for i in append_conf.split("\n"):
+		check = os.popen("cat %s |grep '%s'" % (squid, i)).read().strip()
+		if not check: # if null or empty
+			write_to_file(squid, i); # writing into conf file
+	os.system("service squid3 restart"); # restart squid
 else: 
 	print 'Directory %s does not exists!' % dir_;
 	sys.exit(); # quit script
