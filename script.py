@@ -32,12 +32,12 @@ while True:
 	adduser = raw_input('Enter new user: ')
 	pwd = raw_input("Enter User's password: ")
 	ask = raw_input("Do you want to add more <Y/n>").strip()
-	if ans.lower() != 'y':
+	if ask.lower() != 'y':
 		break
-	if ( not adduser or not pwd ):
-		print "User and or password should not be empty."
+	if ( not adduser or not pwd ): # test if user and or password is not empty
+		print "User and or password should not be empty."; # display an error
 	else:
-		list_of_users.append(([adduser, pwd]))
+		list_of_users.append(([adduser, pwd])); #insert user and password
 print list_of_users
 sys.exit()
 
