@@ -2,6 +2,7 @@
 # -*- utf8-encoding -*-
 
 import os
+import re
 
 # Append data on existing file
 def write_to_file(filename, text):
@@ -32,3 +33,5 @@ if os.path.isdir(dir_): # test if directory exists
 else: 
 	print 'Directory %s does not exists!' % dir_;
 	sys.exit(); # quit script
+
+https://cracken2015@bitbucket.org/cracken2015/squid_ubuntu.git
