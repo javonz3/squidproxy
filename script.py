@@ -29,7 +29,7 @@ chown proxy /etc/squid3/squid_passwd
 initctl show-config squid3 
 """
 file_ = "Ubuntu Suid Setup Proxy.txt"
-if os.path.isfile(file_)""
+if os.path.isfile(file_):
 	append_conf = os.popen("cat %s" % file_).readlines()
 else:
 	sys.exit('File %s does not exists!' % file_);
