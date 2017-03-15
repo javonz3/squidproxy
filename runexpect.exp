@@ -27,11 +27,12 @@ expect "Re-type new password: "
 send "$pwd\r"
 interact
 
-set timeout 7
+
 set user [exec whoami]
 set pwd [lindex $argv 0]
+set timeout 7
 spawn sudo rm spi
-set timeout 2
+set timeout 3
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
 interact
