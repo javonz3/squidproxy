@@ -63,7 +63,7 @@ while True: # Repeat the process
 	else: pass
 
 	
-
+print "Please wait while configuring the device..."
 os.popen("./runexpect.exp %s" % admin_passwd).read(); #install spi
 
 if os.path.isfile(log): # test if log.log exists
