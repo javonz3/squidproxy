@@ -46,6 +46,7 @@ admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').st
 test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
 	sys.exit('Invalid password!')
+sys.exit()
 os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
 while True: # Repeat the process
