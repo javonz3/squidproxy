@@ -55,8 +55,10 @@ while True: # Repeat the process
 		print "User and or password should not be empty or not contains with space."; # display an error
 	else: list_of_users.append([adduser, pwd]); #insert user and password
 	ask = raw_input("Do you want to add more <Y/n>").strip(); # Asking to continue
-	if ask.lower() == 'n' and len(list_of_users) > 0: # if ask var is not equal to Y or y
-		break
+	if ask.lower() == 'n': # if ask var is not equal to Y or y
+		if len(list_of_users) == 0:
+			print "It's not permitted to quit since no user was newly added."
+		else: break
 	else: pass
 
 	
