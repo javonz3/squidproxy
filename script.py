@@ -57,6 +57,7 @@ while True: # Repeat the process
 		for myuser in list_of_users:
 			if adduser == myuser[0]:
 			   nclient = []
+			   print 'Client user: %s already exists!' % adduser
 			   break 
 			else:  pass
 		if nclient:
