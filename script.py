@@ -51,14 +51,15 @@ else: pass
 while True: # Repeat the process
 	adduser = raw_input("Client's user: "); # asking for new username
 	pwd = getpass.getpass(prompt="Enter your Client's password: ").strip(); # asking for new password
+	if ( not adduser or not pwd or re.search(" ", adduser) or re.search(" ", pwd)): # test if user and or password is not empty
+		print "User and or password should not be empty or not contains with space."; # display an error
+	else: list_of_users.append([adduser, pwd]); #insert user and password
 	ask = raw_input("Do you want to add more <Y/n>").strip(); # Asking to continue
 	if ask.lower() != 'y' and len(list_of_users) > 0: # if ask var is not equal to Y or y
 		break
 	else: pass
 
-	if (( not adduser or not pwd ) and re.search(" ", adduser) and re.search(" ", pwd)): # test if user and or password is not empty
-		print "User and or password should not be empty or not contains with space."; # display an error
-	else: list_of_users.append([adduser, pwd]); #insert user and password
+	
 
 os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
