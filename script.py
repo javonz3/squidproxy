@@ -89,7 +89,7 @@ for i in commands.split('\n'): # split commands
 		# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
 		try:
 			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
-		except: os.system("sudo apt-get install %s" % i)
+		except: os.system("./myexpect.exp %s %s" % (i, admin_passwd))
 	else:
 		os.system("sudo %s" % i); # execute commands
 
