@@ -54,7 +54,15 @@ while True: # Repeat the process
 	pwd = getpass.getpass(prompt="Enter your Client's password: ").strip(); # asking for new password
 	if ( not adduser or not pwd or re.search(" ", adduser) or re.search(" ", pwd)): # test if user and or password is not empty
 		print "User and or password should not be empty or not contains with space."; # display an error
-	else: list_of_users.append([adduser, pwd]); #insert user and password
+	else:
+		nclient = [ adduser, pwd ]
+		for myuser in list_of_users:
+			if adduser == myuser[0]:
+			   nclient = []
+			   break 
+		if nclient:
+			list_of_users.append(nclient); #insert user and password
+		else: pass
 	ask = raw_input("Do you want to add more type 'n' or hit enter to continue?").strip(); # Asking to continue
 	if ask.lower() == 'n': # if ask var is not equal to Y or y
 		if len(list_of_users) == 0:
