@@ -19,9 +19,6 @@ def write_to_file(filename, text):
 dir_="/etc/squid3"
 squid = "squid.conf"
 commands="""
-apt-get update
-apt-get install squid
-apt-get install apache2-utils
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
 chmod 0777 /etc/squid3/squid.conf
 chmod a-w /etc/squid3/squid.conf.orig
