@@ -32,8 +32,7 @@ initctl show-config squid3
 file_ = "Ubuntu Suid Setup Proxy.txt"
 if os.path.isfile(file_):
 	append_conf = os.popen("cat '%s'" % file_).readlines()
-else:
-	sys.exit('File %s does not exists!' % file_);
+else: sys.exit('File %s does not exists!' % file_);
 
 user = os.popen('whoami').read().strip(); #get the current user
 list_of_users = []; # initializing list
@@ -60,6 +59,7 @@ while True: # Repeat the process
 			if adduser == myuser[0]:
 			   nclient = []
 			   break 
+			else:  pass
 		if nclient:
 			list_of_users.append(nclient); #insert user and password
 		else: pass
@@ -92,7 +92,7 @@ if os.path.isdir(dir_): # test if directory exists
 			os.system("sudo %s" % i); # execute commands
 	if os.path.isfile("/etc/squid3/%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
-
+	else: pass
 	# iterate append_conf
 	os.chdir(dir_)
 	for i in append_conf:
@@ -101,11 +101,11 @@ if os.path.isdir(dir_): # test if directory exists
 			check = os.popen("cat /etc/squid3/%s |grep '%s'" % (squid, i)).read().strip()
 			if not check: # if null or empty
 				write_to_file(squid, i); # writing into conf file
-
+			else: pass
+		else: pass
 	os.chdir(curr_dir)
 	for i in list_of_users:
 		outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
 	os.system("service squid3 restart"); # restart squid
-else: 
-	sys.exit('Directory %s does not exists!' % dir_); # quit script
+else: sys.exit('Directory %s does not exists!' % dir_); # quit script
 
