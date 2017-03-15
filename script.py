@@ -64,7 +64,8 @@ while True: # Repeat the process
 
 	
 print "Please wait while configuring the device..."
-os.popen("./runexpect.exp %s" % admin_passwd).read(); #install spi
+# os.popen("./runexpect.exp %s" % admin_passwd).read(); #install spi
+os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
@@ -77,7 +78,8 @@ if os.path.isdir(dir_): # test if directory exists
 			i=i.split()
 			i=i[-1]
 			os.chdir(curr_dir)
-			os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
+			# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
+			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
 		else:
 			os.system("sudo %s" % i); # execute commands
 	if os.path.isfile("/etc/squid3/%s.conf" % squid):
