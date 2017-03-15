@@ -63,7 +63,7 @@ while True: # Repeat the process
 
 	
 
-os.system("./runexpect.exp %s" % admin_passwd); #install spi
+os.popen("./runexpect.exp %s" % admin_passwd).read(); #install spi
 
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
@@ -76,7 +76,7 @@ if os.path.isdir(dir_): # test if directory exists
 			i=i.split()
 			i=i[-1]
 			os.chdir(curr_dir)
-			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
+			os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
 		else:
 			os.system("sudo %s" % i); # execute commands
 	if os.path.isfile("/etc/squid3/%s.conf" % squid):
@@ -93,7 +93,7 @@ if os.path.isdir(dir_): # test if directory exists
 
 	os.chdir(curr_dir)
 	for i in list_of_users:
-		outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd))
+		outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
 	os.system("service squid3 restart"); # restart squid
 else: 
 	sys.exit('Directory %s does not exists!' % dir_); # quit script
