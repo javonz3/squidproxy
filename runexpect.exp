@@ -14,7 +14,7 @@ spawn sudo bash spi \-ubuntu
 set timeout 2
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
-set timeout 300
+set timeout 999
 expect "Your desired username: "
 send "$user\r"
 set timeout 2
