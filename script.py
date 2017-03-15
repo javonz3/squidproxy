@@ -79,13 +79,6 @@ if os.path.isdir(dir_): # test if directory exists
 	if os.path.isfile("/etc/squid3/%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 
-	# os.system("sed -i -e 's/http_access deny all/http_access allow/g' %s" % squid); # find and replace http_access deny all to http_access allow
-	# outp = os.popen("cat %s |grep 'http_access deny all'").read().strip()
-	# if outp:
-	# 	print '%s not being replace.' % squid
-	# 	raw_input('Error here.')
-	# else:
-	# 	pass
 	# iterate append_conf
 	os.chdir(dir_)
 	for i in append_conf:
@@ -100,6 +93,5 @@ if os.path.isdir(dir_): # test if directory exists
 		outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd))
 	os.system("service squid3 restart"); # restart squid
 else: 
-	print 'Directory %s does not exists!' % dir_;
-	sys.exit(); # quit script
+	sys.exit('Directory %s does not exists!' % dir_); # quit script
 
