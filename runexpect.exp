@@ -10,6 +10,8 @@ interact
 
 
 set timeout 7
+set user [exec whoami]
+set pwd [lindex $argv 0]
 spawn sudo bash spi \-ubuntu 
 set timeout 2
 expect "\[sudo\] password for $user: "
