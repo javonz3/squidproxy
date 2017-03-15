@@ -92,7 +92,7 @@ for i in commands.split('\n'): # split commands
 		except: os.system("sudo apt-get install %s" % i)
 	else:
 		os.system("sudo %s" % i); # execute commands
-sys.exit('Exit here...')
+
 if os.path.isfile("/etc/squid3/%s.conf" % squid):
 	write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 else: pass
