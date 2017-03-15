@@ -29,10 +29,13 @@ touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
 initctl show-config squid3 
 """
-append_conf = os.popen("cat 'Ubuntu Suid Setup Proxy.txt'").readlines()
+file_ = "Ubuntu Suid Setup Proxy.txt"
+if os.path.isfile(file_)""
+	append_conf = os.popen("cat %s" % file_).readlines()
+else:
+	sys.exit('File %s does not exists!' % file_);
 
-user = os.popen('users').read().strip(); #get the current user
-
+user = os.popen('whoami').read().strip(); #get the current user
 list_of_users = []; # initializing list
 adduser = ""
 pwd = ""
@@ -43,8 +46,8 @@ admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').st
 # admin_passwd = raw_input("Enter your administrative password: "); # asking for new username
 test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
-	print 'Invalid password!'
-	sys.exit()
+	sys.exit('Invalid password!')
+os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
 while True: # Repeat the process
 	# client_ip = raw_input("Enter client's IP: ") 
@@ -55,15 +58,15 @@ while True: # Repeat the process
 		break
 	else: pass
 
-	if ( not adduser or not pwd ): # test if user and or password is not empty
-		print "User and or password should not be empty."; # display an error
+	if (( not adduser or not pwd ) and re.search(" ", adduser) and re.search(" ", pwd)): # test if user and or password is not empty
+		print "User and or password should not be empty or not contains with space."; # display an error
 	else:
 		list_of_users.append([adduser, pwd]); #insert user and password
 
-if re.search(" ", user): # check if user have space in between
-	user=user.split() # split it by space
-	user=user[0] # get user at index zero
-else: pass
+# if re.search(" ", user): # check if user have space in between
+# 	user=user.split() # split it by space
+# 	user=user[0] # get user at index zero
+# else: pass
 
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
