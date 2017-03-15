@@ -58,8 +58,7 @@ while True: # Repeat the process
 
 	if (( not adduser or not pwd ) and re.search(" ", adduser) and re.search(" ", pwd)): # test if user and or password is not empty
 		print "User and or password should not be empty or not contains with space."; # display an error
-	else:
-		list_of_users.append([adduser, pwd]); #insert user and password
+	else: list_of_users.append([adduser, pwd]); #insert user and password
 
 os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
