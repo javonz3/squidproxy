@@ -49,7 +49,7 @@ if not re.search('Welcome', test_login):
 else: pass
 
 while True: # Repeat the process
-	adduser = raw_input("Client's user: "); # asking for new username
+	adduser = raw_input("Enter your client's username: "); # asking for new username
 	pwd = getpass.getpass(prompt="Enter your Client's password: ").strip(); # asking for new password
 	if ( not adduser or not pwd or re.search(" ", adduser) or re.search(" ", pwd)): # test if user and or password is not empty
 		print "User and or password should not be empty or not contains with space."; # display an error
