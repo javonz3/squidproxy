@@ -20,7 +20,6 @@ dir_="/etc/squid3"
 squid = "squid.conf"
 commands="""
 apt-get update
-apt-get install expect
 apt-get install squid 
 apt-get install apache2-utils
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
