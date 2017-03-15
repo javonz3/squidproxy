@@ -75,38 +75,37 @@ while True: # Repeat the process
 print "Please wait while configuring the device..."
 # os.popen("./runexpect.exp %s" % admin_passwd).read(); #install spi
 os.system("./runexpect.exp %s" % admin_passwd); #install spi
-sys.exit()
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
 else: pass
 
-if os.path.isdir(dir_): # test if directory exists
+# if os.path.isdir(dir_): # test if directory exists
 	# os.chdir(dir_); # cd directory
-	for i in commands.split('\n'): # split commands
-		if re.search('install', i):
-			i=i.split()
-			i=i[-1]
-			os.chdir(curr_dir)
-			# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
-			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
-		else:
-			os.system("sudo %s" % i); # execute commands
-	if os.path.isfile("/etc/squid3/%s.conf" % squid):
-		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
-	else: pass
-	# iterate append_conf
-	os.chdir(dir_)
-	for i in append_conf:
-		i=i.strip()
-		if i:
-			check = os.popen("cat /etc/squid3/%s |grep '%s'" % (squid, i)).read().strip()
-			if not check: # if null or empty
-				write_to_file(squid, i); # writing into conf file
-			else: pass
+for i in commands.split('\n'): # split commands
+	if re.search('install', i):
+		i=i.split()
+		i=i[-1]
+		os.chdir(curr_dir)
+		# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
+		os.system("./myexpect.exp %s %s" % (i, admin_passwd))
+	else:
+		os.system("sudo %s" % i); # execute commands
+if os.path.isfile("/etc/squid3/%s.conf" % squid):
+	write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
+else: pass
+# iterate append_conf
+os.chdir(dir_)
+for i in append_conf:
+	i=i.strip()
+	if i:
+		check = os.popen("cat /etc/squid3/%s |grep '%s'" % (squid, i)).read().strip()
+		if not check: # if null or empty
+			write_to_file(squid, i); # writing into conf file
 		else: pass
-	os.chdir(curr_dir)
-	for i in list_of_users:
-		outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
-	os.system("service squid3 restart"); # restart squid
-else: sys.exit('Directory %s does not exists!' % dir_); # quit script
+	else: pass
+os.chdir(curr_dir)
+for i in list_of_users:
+	outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
+os.system("service squid3 restart"); # restart squid
+# else: sys.exit('Directory %s does not exists!' % dir_); # quit script
 
