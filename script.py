@@ -46,12 +46,13 @@ admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').st
 test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
 	sys.exit('Invalid password!')
+else: pass
 
 while True: # Repeat the process
 	adduser = raw_input("Client's user: "); # asking for new username
-	pwd = raw_input("Client's password: "); # asking for new password
+	pwd = getpass.getpass(prompt="Enter your Client's password: ").strip(); # asking for new password
 	ask = raw_input("Do you want to add more <Y/n>").strip(); # Asking to continue
-	if ask.lower() != 'y': # if ask var is not equal to Y or y
+	if ask.lower() != 'y' and len(list_of_users) > 0: # if ask var is not equal to Y or y
 		break
 	else: pass
 
