@@ -6,9 +6,6 @@ spawn sudo wget https\:\/\/raw.githubusercontent.com\/hidden\-refuge\/spi\/maste
 set timeout 2
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
-interact
-
-
 set timeout 7
 spawn sudo bash spi \-ubuntu 
 set timeout 300
