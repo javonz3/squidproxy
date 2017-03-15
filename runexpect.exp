@@ -35,4 +35,7 @@ spawn sudo rm spi
 set timeout 3
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
+set timeout 3
+expect "\[sudo\] password for $user: "
+send "$pwd\r"
 interact
