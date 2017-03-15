@@ -23,6 +23,7 @@ apt-get update
 apt-get install squid 
 apt-get install apache2-utils
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
+chmod 0777 /etc/squid3/squid.conf
 chmod a-w /etc/squid3/squid.conf.orig
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
