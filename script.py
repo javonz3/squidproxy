@@ -46,7 +46,6 @@ admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').st
 test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
 	sys.exit('Invalid password!')
-sys.exit()
 os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
 while True: # Repeat the process
@@ -81,7 +80,7 @@ if os.path.isdir(dir_): # test if directory exists
 			os.chdir(curr_dir)
 			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
 		else:
-			os.system(i); # execute commands
+			os.system("sudo %s" % i); # execute commands
 	if os.path.isfile("/etc/squid3/%s.conf" % squid):
 		write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 
