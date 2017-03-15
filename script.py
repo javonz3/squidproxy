@@ -91,6 +91,7 @@ for i in commands.split('\n'): # split commands
 			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
 		except: os.system("./myexpect.exp %s %s" % (i, admin_passwd))
 	else:
+		print "Perform %s" % i
 		os.system("sudo %s" % i); # execute commands
 
 if os.path.isfile("/etc/squid3/%s.conf" % squid):
@@ -109,6 +110,6 @@ for i in append_conf:
 os.chdir(curr_dir)
 for i in list_of_users:
 	outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
-os.system("service squid3 restart"); # restart squid
+os.system("sudo service squid3 restart"); # restart squid
 # else: sys.exit('Directory %s does not exists!' % dir_); # quit script
 
