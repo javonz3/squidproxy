@@ -12,4 +12,8 @@ send "$pwd\r"
 set timeout 3
 expect "Do you want to continue? \[Y\/n\] "
 send "Y\r"
+set timeout 100
+expect "\[sudo\] password for $user: "
+set timeout 2
+send "$pwd\r"
 interact
