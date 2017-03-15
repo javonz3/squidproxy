@@ -2,12 +2,21 @@
 
 set user [exec whoami]
 set pwd [lindex $argv 0]
-spawn sudo wget https\:\/\/raw.githubusercontent.com\/hidden\-refuge\/spi\/master\/spi \&\& bash spi \-ubuntu \&\& sudo rm spi
+spawn sudo wget https\:\/\/raw.githubusercontent.com\/hidden\-refuge\/spi\/master\/spi 
 set timeout 2
 expect "\[sudo\] password for $user: "
 set timeout 2
 send "$pwd\r"
-set timeout 2
+spawn sudo bash spi \-ubuntu 
+set timeout 300
 expect "Your desired username: "
 send "$user\r"
+set timeout 2
+expect "New password: "
+send "$pwd\r"
+set timeout 2
+expect "Re-type new password: "
+send "$pwd\r"
+set timeout 7
+spawn sudo rm spi
 interact
