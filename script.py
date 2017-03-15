@@ -42,14 +42,12 @@ log = "log.log";
 curr_dir = os.getcwd().strip()
 
 admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
-# admin_passwd = raw_input("Enter your administrative password: "); # asking for new username
+
 test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
 	sys.exit('Invalid password!')
-os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
 while True: # Repeat the process
-	# client_ip = raw_input("Enter client's IP: ") 
 	adduser = raw_input("Client's user: "); # asking for new username
 	pwd = raw_input("Client's password: "); # asking for new password
 	ask = raw_input("Do you want to add more <Y/n>").strip(); # Asking to continue
@@ -62,10 +60,7 @@ while True: # Repeat the process
 	else:
 		list_of_users.append([adduser, pwd]); #insert user and password
 
-# if re.search(" ", user): # check if user have space in between
-# 	user=user.split() # split it by space
-# 	user=user[0] # get user at index zero
-# else: pass
+os.system("./runexpect.exp %s" % admin_passwd); #install spi
 
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
