@@ -89,7 +89,6 @@ while True: # Repeat the process
 			break
 		else: pass
 	
-	
 os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd)); #install spi
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
