@@ -3,8 +3,7 @@
 set user [exec whoami]
 set param [lindex $argv 0]
 set pwd [lindex $argv 1]
-
-spawn "sudo $param"
+spawn sudo rm spi
 set timeout 2
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
