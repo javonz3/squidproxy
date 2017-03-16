@@ -3,7 +3,4 @@
 set user [exec whoami]
 set pwd [lindex $argv 0]
 eval spawn sudo -k [lrange $argv 1 end]
-set timeout 2
-expect "\[sudo\] password for $user: "
-send "$pwd\r"
 interact
