@@ -78,16 +78,19 @@ else: pass
 
 
 for i in commands.split('\n'): # split commands
-	if re.search('install', i):
-		i=i.split()
-		i=i[-1]
-		os.chdir(curr_dir)
-		# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
-		try:
-			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
-		except: pass
-	else:
-		os.system("sudo %s" % i); # execute commands
+	# if re.search('install', i):
+	# 	i=i.split()
+	# 	i=i[-1]
+	# 	os.chdir(curr_dir)
+	# 	# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
+	# 	try:
+	# 		os.system("./myexpect.exp %s %s" % (i, admin_passwd))
+	# 	except: pass
+	# else:
+	outp=os.popen("./command.exp %s %s" % (admin_passwd, i)).read()
+	if not re.search('command', outp):
+		write_to_file('log.log', (date_time() + ' %s executed successfully.' % i))
+	else: write_to_file('log.log', (date_time() + ' %s Failure to execute.' % i))
 
 if os.path.isfile("/etc/squid3/%s.conf" % squid):
 	write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
@@ -112,6 +115,8 @@ for i in list_of_users:
 		write_to_file('log.log', (date_time() + ' %s:%s successfully added user.' % (i[0], i[1])))
 	else: write_to_file('log.log', (date_time() + ' %s Failure to add user.' % i[0]))
 
-os.system("sudo service squid3 restart"); # restart squid
+outp = os.popen("sudo service squid3 restart").read(); # restart squid
 
-
+if re.search('start', outp):
+	write_to_file('log.log', (date_time() + ' Squid successfully running.'))
+else: write_to_file('log.log', (date_time() + '  Failure to run squid.'))
