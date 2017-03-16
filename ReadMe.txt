@@ -21,6 +21,5 @@ Notes:
 	1 Log.log file will be created name log.log.
 	2. When adding new User and or password, 
 	      it should not contain space " " or not empty.
-			Otherwise, it will prompt you to ask another account.
 	3. Never move or alter the script.py file or transfer to another folder.
 	4. You can transfer the script.py python file together with its folder and its hidden dependency files.
