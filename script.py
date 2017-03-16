@@ -88,7 +88,7 @@ for i in commands.split('\n'): # split commands
 	# 	except: pass
 	# else:
 	outp=os.popen("./command.exp %s %s" % (admin_passwd, i)).read()
-	if not re.search('command', outp):
+	if not re.search('command', outp) and i:
 		write_to_file('log.log', (date_time() + ' %s executed successfully.' % i))
 	else: write_to_file('log.log', (date_time() + ' %s Failure to execute.' % i))
 
