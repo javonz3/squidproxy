@@ -5,8 +5,6 @@ set pwd [lindex $argv 1]
 set admpwd [lindex $argv 2]
 spawn sudo wget https\:\/\/raw.githubusercontent.com\/hidden\-refuge\/spi\/master\/spi 
 set timeout 2
-expect "\[sudo\] password for $user: "
-send "$admpwd\r"
 interact
 
 
