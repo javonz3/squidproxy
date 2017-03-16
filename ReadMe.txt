@@ -13,4 +13,8 @@ Run the program
 or hit enter to repeat to repeat
 9. Done
 
-Note: log file will be created name log.log.
+Notes: 
+	1 Log.log file will be created name log.log.
+	2. When adding new User and or password, 
+	      it should not contain space " " or not empty.
+			Otherwise, it will prompt you to ask another account.
