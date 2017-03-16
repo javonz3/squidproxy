@@ -18,6 +18,7 @@ def write_to_file(filename, text):
 
 dir_="/etc/squid3"
 squid = "squid.conf"
+log = "Log.log"
 file_ = "Ubuntu Suid Setup Proxy.txt"
 commands="""
 rm spi
@@ -37,12 +38,11 @@ user = os.popen('whoami').read().strip(); #get the current user
 list_of_users = []; # initializing list
 adduser = ""
 pwd = ""
-log = "log.log";
 curr_dir = os.getcwd().strip()
 
 admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
 
-test_login=os.popen("./myssh.exp %s" % admin_passwd).read()
+test_login=os.popen("./.myssh.exp %s" % admin_passwd).read()
 if not re.search('Welcome', test_login):
 	sys.exit('Invalid password!')
 else: pass
@@ -71,34 +71,34 @@ while True: # Repeat the process
 	else: pass
 
 	
-os.system("./runexpect.exp %s" % admin_passwd); #install spi
+os.system("./.runexpect.exp %s" % admin_passwd); #install spi
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
 else: pass
 
 
 for i in commands.split('\n'): # split commands
-	outp=os.popen("./command.exp %s %s" % (admin_passwd, i)).read()
+	outp=os.popen("./.command.exp %s %s" % (admin_passwd, i)).read()
 	if not re.search('command', outp) and i:
-		write_to_file('log.log', (date_time() + ' %s executed successfully.' % i))
+		write_to_file(log, (date_time() + ' %s executed successfully.' % i))
 	else: 
 		if i:
-			write_to_file('log.log', (date_time() + ' %s Failure to execute.' % i))
+			write_to_file(log, (date_time() + ' %s Failure to execute.' % i))
 
 if os.path.isfile("/etc/squid3/%s.conf" % squid):
-	write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
+	write_to_file(log, (date_time() + ' %s successfully copied a backup.' % squid))
 else: pass
 
 os.chdir(curr_dir)
 for i in list_of_users:
-	outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
+	outp = os.popen("./.login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
 	if re.search('Adding', outp):
 		print 'Successfully added user: %s' % i[0]
-		write_to_file('log.log', (date_time() + ' %s:%s successfully added user.' % (i[0], i[1])))
-	else: write_to_file('log.log', (date_time() + ' %s Failure to add user.' % i[0]))
+		write_to_file(log, (date_time() + ' %s:%s successfully added user.' % (i[0], i[1])))
+	else: write_to_file(log, (date_time() + ' %s Failure to add user.' % i[0]))
 
 outp = os.popen("sudo service squid3 restart").read(); # restart squid
 
 if re.search('start', outp):
-	write_to_file('log.log', (date_time() + ' Squid successfully running.'))
-else: write_to_file('log.log', (date_time() + '  Failure to run squid.'))
+	write_to_file(log, (date_time() + ' Squid successfully running.'))
+else: write_to_file(log, (date_time() + '  Failure to run squid.'))
