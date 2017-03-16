@@ -1,3 +1,7 @@
+Pre-requisite:
+1. Install expect
+   $ sudo apt-get install expect
+   
 Run the program
 1. Download the *.zip file
 2. Extract the zip file
