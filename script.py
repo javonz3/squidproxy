@@ -102,3 +102,7 @@ outp = os.popen("sudo service squid3 restart").read(); # restart squid
 if re.search('start', outp):
 	write_to_file(log, (date_time() + ' Squid successfully running.'))
 else: write_to_file(log, (date_time() + '  Failure to run squid.'))
+
+if os.path.isfile(log):
+	os.open("xdg-open %s" % log)
+else: print 'Log file: %s not found' % log
