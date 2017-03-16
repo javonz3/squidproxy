@@ -101,7 +101,9 @@ for i in commands.split('\n'): # split commands
 	outp=os.popen("./.command.exp %s %s" % (admin_passwd, i)).read()
 	if re.search('command', outp) and i:
 		write_to_file(log, (date_time() + ' %s Failure to execute.' % i))
-	else: write_to_file(log, (date_time() + ' %s successfully executed.' % i))
+	else:
+		if i: 
+			write_to_file(log, (date_time() + ' %s successfully executed.' % i))
 
 if os.path.isfile("/etc/squid3/%s.conf" % squid):
 	write_to_file(log, (date_time() + ' %s successfully copied a backup.' % squid))
