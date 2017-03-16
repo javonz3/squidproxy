@@ -29,16 +29,18 @@ else: pass
 
 conf = os.popen("cat .squid.conf").readlines()
 for i in conf:
-	if re.search('IPADDRESS', i):
-		cnt = 1
-		for myip in ips:
-			i_="acl ip%s myip %s" % (cnt, myip)
-			write_to_file(".squid2.conf", i_)
-			i_="tcp_outgoing_address %s ip%s" % (myip, cnt)
-			write_to_file(".squid2.conf", i_)
-			cnt += 1
-	else:
-		write_to_file(".squid2.conf", i)	
+	i=i.strip()
+	if i:
+		if re.search('IPADDRESS', i):
+			cnt = 1
+			for myip in ips:
+				i_="acl ip%s myip %s" % (cnt, myip)
+				write_to_file(".squid2.conf", i_)
+				i_="tcp_outgoing_address %s ip%s" % (myip, cnt)
+				write_to_file(".squid2.conf", i_)
+				cnt += 1
+		else:
+			write_to_file(".squid2.conf", i)	
 
 dir_="/etc/squid3"
 squid = "squid.conf"
@@ -66,10 +68,11 @@ curr_dir = os.getcwd().strip()
 
 admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
 
-test_login=os.popen("./.myssh.exp %s" % admin_passwd).read()
-if not re.search('Welcome', test_login):
-	sys.exit('Invalid password!')
-else: pass
+if user != 'root':
+	test_login=os.popen("./.myssh.exp %s" % admin_passwd).read()
+	if not re.search('Welcome', test_login):
+		sys.exit('Invalid password!')
+	else: pass
 
 while True: # Repeat the process
 	adduser = raw_input("Enter your client's username: ").strip(); # asking for new username
