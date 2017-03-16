@@ -88,15 +88,9 @@ while True: # Repeat the process
 			list_of_users.append(nclient); #insert user and password
 			break
 		else: pass
-	# ask = raw_input("Do you want to add more <n>\n\t or hit enter to continue? ").strip(); # Asking to continue
-	# if ask.lower() == 'n': # if ask var is not equal to Y or y
-	# 	if len(list_of_users) == 0:
-	# 		print "It's not permitted to quit since no user was newly added."
-	# 	else: break
-	# else: pass
-
 	
-os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd); #install spi
+	
+os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd)); #install spi
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
 else: pass
