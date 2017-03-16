@@ -107,7 +107,9 @@ for i in append_conf:
 	else: pass
 os.chdir(curr_dir)
 for i in list_of_users:
+	raw_input('hello')
 	outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
+
 os.system("sudo service squid3 restart"); # restart squid
 # else: sys.exit('Directory %s does not exists!' % dir_); # quit script
 
