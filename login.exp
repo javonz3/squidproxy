@@ -5,14 +5,14 @@ set user [lindex $argv 0]
 set user_pwd [lindex $argv 1]
 set pwd [lindex $argv 2]
 spawn sudo htpasswd /etc/squid3/squid_passwd $user
-set timeout 2
+set timeout 3
 expect "\[sudo\] password for $user_: "
-set timeout 2
+set timeout 3
 send "$pwd\r"
-set timeout 2
+set timeout 3
 expect "New password: "
 send "$user_pwd\r"
-set timeout 2
+set timeout 3
 expect "Re-type new password: "
 send "$user_pwd\r"
 interact
