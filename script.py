@@ -86,7 +86,7 @@ for i in commands.split('\n'): # split commands
 		# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
 		try:
 			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
-		except: os.system("./myexpect.exp %s %s" % (i, admin_passwd))
+		except: pass
 	else:
 		print "Perform %s" % i
 		os.system("sudo %s" % i); # execute commands
@@ -101,7 +101,8 @@ for i in append_conf:
 	if i:
 		check = os.popen("cat /etc/squid3/%s |grep '%s'" % (squid, i)).read().strip()
 		if not check: # if null or empty
-			write_to_file(squid, i); # writing into conf file
+			# write_to_file(squid, i); # writing into conf file
+			pass
 		else: pass
 	else: pass
 os.chdir(curr_dir)
