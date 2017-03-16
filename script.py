@@ -21,7 +21,7 @@ squid = "squid.conf"
 file_ = "Ubuntu Suid Setup Proxy.txt"
 commands="""
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
-cp "/etc/squid3/Ubuntu Suid Setup Proxy.txt" /etc/squid3/squid.conf
+cp "Ubuntu Suid Setup Proxy.txt" /etc/squid3/squid.conf
 chmod a-w /etc/squid3/squid.conf*
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
@@ -86,7 +86,6 @@ for i in commands.split('\n'): # split commands
 			os.system("./myexpect.exp %s %s" % (i, admin_passwd))
 		except: pass
 	else:
-		print "Perform %s" % i
 		os.system("sudo %s" % i); # execute commands
 
 if os.path.isfile("/etc/squid3/%s.conf" % squid):

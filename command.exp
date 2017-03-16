@@ -5,7 +5,7 @@ set param [lindex $argv 0]
 set pwd [lindex $argv 1]
 
 spawn sudo $param
-set timeout 2
+set timeout -1
 expect "\[sudo\] password for $user: "
 send "$pwd\r"
 interact
