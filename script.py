@@ -63,7 +63,7 @@ while True: # Repeat the process
 		if nclient:
 			list_of_users.append(nclient); #insert user and password
 		else: pass
-	ask = raw_input("Do you want to add more type 'n' or hit enter to continue? ").strip(); # Asking to continue
+	ask = raw_input("Do you want to add more <n>\n\t or hit enter to continue? ").strip(); # Asking to continue
 	if ask.lower() == 'n': # if ask var is not equal to Y or y
 		if len(list_of_users) == 0:
 			print "It's not permitted to quit since no user was newly added."
