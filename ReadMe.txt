@@ -10,7 +10,7 @@ Run the program
       supply it and hit enter button to proceed
 7. When asking for new user and password provide it
 8. When asking to repeat the process in step no 6 to 7, Type 'n' to proceed with the next stage
-or hit enter to repeat to repeat
+or hit enter to repeat the process
 9. Done
 
 Notes: 
