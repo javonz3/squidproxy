@@ -20,6 +20,7 @@ dir_="/etc/squid3"
 squid = "squid.conf"
 file_ = "Ubuntu Suid Setup Proxy.txt"
 commands="""
+rm spi
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
 cp "Ubuntu Suid Setup Proxy.txt" /etc/squid3/squid.conf
 chmod a-w /etc/squid3/squid.conf*
