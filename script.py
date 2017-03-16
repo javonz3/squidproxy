@@ -104,5 +104,6 @@ if re.search('start', outp):
 else: write_to_file(log, (date_time() + '  Failure to run squid.'))
 
 if os.path.isfile(log):
-	os.open("xdg-open %s" % log)
-else: print 'Log file: %s not found' % log
+	os.system('clear'); # clear print display
+	os.open("xdg-open %s" % log).read(); # open log file
+else: print 'Log file: %s not found' % log; # print if file not found
