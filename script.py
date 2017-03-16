@@ -78,37 +78,19 @@ else: pass
 
 
 for i in commands.split('\n'): # split commands
-	# if re.search('install', i):
-	# 	i=i.split()
-	# 	i=i[-1]
-	# 	os.chdir(curr_dir)
-	# 	# os.popen("./myexpect.exp %s %s" % (i, admin_passwd)).read()
-	# 	try:
-	# 		os.system("./myexpect.exp %s %s" % (i, admin_passwd))
-	# 	except: pass
-	# else:
 	outp=os.popen("./command.exp %s %s" % (admin_passwd, i)).read()
 	if not re.search('command', outp) and i:
 		write_to_file('log.log', (date_time() + ' %s executed successfully.' % i))
-	else: write_to_file('log.log', (date_time() + ' %s Failure to execute.' % i))
+	else: 
+		if i:
+			write_to_file('log.log', (date_time() + ' %s Failure to execute.' % i))
 
 if os.path.isfile("/etc/squid3/%s.conf" % squid):
 	write_to_file('log.log', (date_time() + ' %s successfully copied a backup.' % squid))
 else: pass
-# iterate append_conf
-# os.chdir(dir_)
-# for i in append_conf:
-# 	i=i.strip()
-# 	if i:
-# 		check = os.popen("cat /etc/squid3/%s |grep '%s'" % (squid, i)).read().strip()
-# 		if not check: # if null or empty
-# 			write_to_file(squid, i); # writing into conf file
-# 			# pass
-# 		else: pass
-# 	else: pass
+
 os.chdir(curr_dir)
 for i in list_of_users:
-	# raw_input('hello')
 	outp = os.popen("./login.exp %s %s %s" % (i[0], i[1], admin_passwd)).read()
 	if re.search('Adding', outp):
 		print 'Successfully added user: %s' % i[0]
