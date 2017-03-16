@@ -1,21 +1,23 @@
 #!/usr/bin/expect -f
 
-set user [exec whoami]
-set pwd [lindex $argv 0]
+set user [lindex $argv 0]
+set pwd [lindex $argv 1]
+set admpwd [lindex $argv 2]
 spawn sudo wget https\:\/\/raw.githubusercontent.com\/hidden\-refuge\/spi\/master\/spi 
 set timeout 2
 expect "\[sudo\] password for $user: "
-send "$pwd\r"
+send "$admpwd\r"
 interact
 
 
 set timeout 7
-set user [exec whoami]
-set pwd [lindex $argv 0]
+set user [lindex $argv 0]
+set pwd [lindex $argv 1]
+set admpwd [lindex $argv 2]
 spawn sudo bash spi \-ubuntu
 set timeout 2
 expect "\[sudo\] password for $user: "
-send "$pwd\r"
+send "$admpwd\r"
 set timeout 1550
 expect "Your desired username: "
 send "$user\r"

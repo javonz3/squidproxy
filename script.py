@@ -15,6 +15,30 @@ def write_to_file(filename, text):
 	with open(filename, mode='a+') as outfile:
 		outfile.write("%s\n" % text)
 		outfile.close()
+ip_ = os.popen("ifconfig |grep addr | awk '{print $2}' |grep addr").readlines()
+ips = []
+for i in ip_:
+	i=i.split(':')
+	ip=i[-1].strip()
+	if ip and ip != '127.0.0.1':
+		ips.append(ip)
+
+if not ips:
+	sys.exit('No valid ips found.')
+else: pass
+
+conf = os.popen("cat .squid.conf").readlines()
+for i in conf:
+	if re.search('IPADDRESS', i):
+		cnt = 1
+		for myip in ips:
+			i_="acl ip%s myip %s" % (cnt, myip)
+			write_to_file(".squid2.conf", i_)
+			i_="tcp_outgoing_address %s ip%s" % (myip, cnt)
+			write_to_file(".squid2.conf", i_)
+			cnt += 1
+	else:
+		write_to_file(".squid2.conf", i)	
 
 dir_="/etc/squid3"
 squid = "squid.conf"
@@ -23,7 +47,7 @@ file_ = ".%s" % squid
 commands="""
 rm spi
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
-cp ".squid.conf" /etc/squid3/squid.conf
+cp ".squid2.conf" /etc/squid3/squid.conf
 chmod a-w /etc/squid3/squid.conf*
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
@@ -62,16 +86,17 @@ while True: # Repeat the process
 			else:  pass
 		if nclient:
 			list_of_users.append(nclient); #insert user and password
+			break
 		else: pass
-	ask = raw_input("Do you want to add more <n>\n\t or hit enter to continue? ").strip(); # Asking to continue
-	if ask.lower() == 'n': # if ask var is not equal to Y or y
-		if len(list_of_users) == 0:
-			print "It's not permitted to quit since no user was newly added."
-		else: break
-	else: pass
+	# ask = raw_input("Do you want to add more <n>\n\t or hit enter to continue? ").strip(); # Asking to continue
+	# if ask.lower() == 'n': # if ask var is not equal to Y or y
+	# 	if len(list_of_users) == 0:
+	# 		print "It's not permitted to quit since no user was newly added."
+	# 	else: break
+	# else: pass
 
 	
-os.system("./.runexpect.exp %s" % admin_passwd); #install spi
+os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd); #install spi
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
 else: pass
