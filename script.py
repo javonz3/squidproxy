@@ -19,11 +19,11 @@ def write_to_file(filename, text):
 dir_="/etc/squid3"
 squid = "squid.conf"
 log = "Log.log"
-file_ = "Ubuntu Suid Setup Proxy.txt"
+file_ = ".%s" % squid
 commands="""
 rm spi
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
-cp "Ubuntu Suid Setup Proxy.txt" /etc/squid3/squid.conf
+cp ".squid.conf" /etc/squid3/squid.conf
 chmod a-w /etc/squid3/squid.conf*
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
