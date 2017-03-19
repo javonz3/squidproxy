@@ -23,3 +23,9 @@ Notes:
 	      it should not contain space " " or not empty.
 	3. Never move or alter the script.py file or transfer to another folder.
 	4. You can transfer the script.py python file together with its folder and its hidden dependency files.
+
+
+To uninstall squid:
+    1. sudo apt-get remove apache2-util squid
+    2. sudo apt-get autoremove
+    2. sudo rm /etc/squid3/squid.*
