@@ -1,0 +1,8 @@
+2017-03-19 03:55:46 rm spi successfully executed.
+2017-03-19 03:55:46 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig successfully executed.
+2017-03-19 03:55:46 cp ".squid2.conf" /etc/squid3/squid.conf successfully executed.
+2017-03-19 03:55:46 chmod a-w /etc/squid3/squid.conf* successfully executed.
+2017-03-19 03:55:46 touch /etc/squid3/squid_passwd successfully executed.
+2017-03-19 03:55:46 chown proxy /etc/squid3/squid_passwd successfully executed.
+2017-03-19 03:55:46 initctl show-config squid3  successfully executed.
+2017-03-19 03:55:48 Squid successfully running.
