@@ -41,7 +41,7 @@ for i in conf:
 				cnt += 1
 		else:
 			write_to_file(".squid2.conf", i)	
-sys.exit()
+
 dir_="/etc/squid3"
 squid = "squid.conf"
 log = "Log.log"
@@ -49,7 +49,7 @@ file_ = ".%s" % squid
 commands="""
 rm spi
 mv /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
-cp ".squid2.conf" /etc/squid3/squid.conf
+mv ".squid2.conf" /etc/squid3/squid.conf
 chmod a-w /etc/squid3/squid.conf*
 touch /etc/squid3/squid_passwd
 chown proxy /etc/squid3/squid_passwd
