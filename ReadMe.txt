@@ -29,3 +29,11 @@ To uninstall squid:
     1. sudo apt-get remove apache2-util squid
     2. sudo apt-get autoremove
     2. sudo rm /etc/squid3/squid.*
+
+How to edit Port Number
+	1. At your terminal, browse script folder
+		i.e cd ~/Download/squid
+	2. sudo vim .squid.conf then change the port number
+		then save the file
+	3. Uninstall squid and apache2-utils
+	4. Re-run the script.py file
