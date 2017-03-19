@@ -15,6 +15,11 @@ def write_to_file(filename, text):
 	with open(filename, mode='a+') as outfile:
 		outfile.write("%s\n" % text)
 		outfile.close()
+
+dir_="/etc/squid3"
+squid = "squid.conf"
+log = "Log.log"
+file_ = ".%s" % squid
 ip_ = os.popen("ifconfig |grep addr | awk '{print $2}' |grep addr").readlines()
 ips = []
 for i in ip_:
@@ -27,6 +32,10 @@ if not ips:
 	sys.exit('No valid ips found.')
 else: pass
 
+if os.path.isfile(log): # test if log.log exists
+	os.remove(log); # remove log.log file
+else: pass
+
 conf = os.popen("cat .squid.conf").readlines()
 for i in conf:
 	i=i.strip()
@@ -36,16 +45,14 @@ for i in conf:
 			for myip in ips:
 				i_="acl ip%s myip %s" % (cnt, myip)
 				write_to_file(".squid2.conf", i_)
+				write_to_file(log, "Newly added ip: %s" % myip)
 				i_="tcp_outgoing_address %s ip%s" % (myip, cnt)
 				write_to_file(".squid2.conf", i_)
 				cnt += 1
 		else:
 			write_to_file(".squid2.conf", i)	
 
-dir_="/etc/squid3"
-squid = "squid.conf"
-log = "Log.log"
-file_ = ".%s" % squid
+
 commands="""
 rm spi
 mv /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
@@ -93,10 +100,6 @@ while True: # Repeat the process
 		else: pass
 	
 os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd)); #install spi
-if os.path.isfile(log): # test if log.log exists
-	os.remove(log); # remove log.log file
-else: pass
-
 for i in commands.split('\n'): # split commands
 	outp=os.popen("./.command.exp %s %s" % (admin_passwd, i)).read()
 	if re.search('command', outp) and i:
