@@ -3,19 +3,19 @@ Pre-requisite:
    $ sudo apt-get install expect
    
 Run the program
-1. Download the *.zip file
-2. Extract the zip file
-3. Launch Terminal App
-4. Browse the extracted file i.e 
-       $ cd ~/Download/configure
-5. Run the command
+1. Launch Terminal
+2. Type the command
+       $ git clone https://github.com/catchwhale/squid
+3. Browse the checkout files i.e 
+       $ cd ~/Download/squid
+4. Run the command
        $ ./script.py
-6. When asking for Administrative password, 
+5. When asking for Administrative password, 
       supply it and hit enter button to proceed
-7. When asking for new user and password provide it
-8. When asking to repeat the process in step no 6 to 7, Type 'n' to proceed with the next stage
+6. When asking for new user and password provide it
+7. When asking to repeat the process in step no 5 to 6, Type 'n' to proceed with the next stage
 or hit enter to repeat the process
-9. Done
+8. Done
 
 Notes: 
 	1 Log.log file will be created name log.log.
