@@ -45,7 +45,6 @@ for i in conf:
 			for myip in ips:
 				i_="acl ip%s myip %s" % (cnt, myip)
 				write_to_file(".squid2.conf", i_)
-				write_to_file(log, "Newly added ip: %s" % myip)
 				i_="tcp_outgoing_address %s ip%s" % (myip, cnt)
 				write_to_file(".squid2.conf", i_)
 				cnt += 1
@@ -130,3 +129,10 @@ if os.path.isfile(log):
 	os.system('clear'); # clear print display
 	print 'Check the log file Log.log.'
 else: print 'Log file: %s not found' % log; # print if file not found
+
+if ips:
+	print "Newly added ip(s) is / are:"
+	for i in ips:
+		write_to_file(log, "Newly added ip: %s" % i)
+		print "Newly added ip: %s" % i
+else: pass
