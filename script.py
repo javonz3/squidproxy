@@ -41,7 +41,7 @@ for i in conf:
 				cnt += 1
 		else:
 			write_to_file(".squid2.conf", i)	
-
+sys.exit()
 dir_="/etc/squid3"
 squid = "squid.conf"
 log = "Log.log"
