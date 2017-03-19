@@ -133,6 +133,6 @@ else: print 'Log file: %s not found' % log; # print if file not found
 if ips:
 	print "Newly added ip(s) is / are:"
 	for i in ips:
-		write_to_file(log, "Newly added ip: %s:%s:%s:%s" % (i, '3128', adduser, pwd))
+		write_to_file(log, "Newly added ip:port:user:passwd %s:%s:%s:%s" % (i, '3128', adduser, pwd))
 		print "%s:%s:%s:%s" % (i, '3128', adduser, pwd)
 else: pass
