@@ -80,7 +80,7 @@ for i in conf:
 		if re.search('http_port', i) and proxy.isdigit():
 			write_to_file(".squid2.conf", "http_port %s" % proxy)
 		else: pass
-
+sys.exit()
 commands="""
 rm spi
 mv /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
