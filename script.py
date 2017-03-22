@@ -16,10 +16,23 @@ def write_to_file(filename, text):
 		outfile.write("%s\n" % text)
 		outfile.close()
 
+squid = "/etc/squid3/squid.conf"
+try:
+	arg = sys.argv[1].strip()
+	proxy = sys.argv[2].strip()
+	if arg == '-e' and proxy.isdigit():
+		if os.path.isfile(squid):
+			http_port = os.popen("cat %s |grep http_port").read().strip()
+			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squid))
+		else:
+			sys.exit("%s does not exists." % squid)
+except: pass
+
 dir_="/etc/squid3"
 squid = "squid.conf"
 log = "Log.log"
 file_ = ".%s" % squid
+proxy = raw_input("Enter port number: ").strip()
 ip_ = os.popen("ifconfig |grep addr | awk '{print $2}' |grep addr").readlines()
 ips = []
 for i in ip_:
@@ -50,7 +63,9 @@ for i in conf:
 				cnt += 1
 		else:
 			write_to_file(".squid2.conf", i)	
-
+		if re.search('http_port', i) and proxy.isdigit():
+			write_to_file(".squid2.conf", "http_port %s" % proxy)
+		else: pass
 
 commands="""
 rm spi
