@@ -58,7 +58,9 @@ if quit:
 	sys.exit()
 else: pass
 proxy = raw_input("Enter port number: ").strip()
-
+if not proxy.isdigit():
+	proxy = '3128'
+else: pass
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
 else: pass
@@ -164,5 +166,5 @@ if ips:
 	print "Newly added ip(s) is / are:"
 	for i in ips:
 		write_to_file(log, "Newly added ip:port:user:passwd %s:%s:%s:%s" % (i, '3128', adduser, pwd))
-		print "%s:%s:%s:%s" % (i, '3128', adduser, pwd)
+		print "%s:%s:%s:%s" % (i, proxy, adduser, pwd)
 else: pass
