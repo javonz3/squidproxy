@@ -81,7 +81,7 @@ for i in conf:
 			else:
 				write_to_file(".squid2.conf", i)	
 		# else: pass
-sys.exit()
+# sys.exit()
 commands="""
 rm spi
 mv /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
