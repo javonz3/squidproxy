@@ -28,6 +28,7 @@ try:
 		else:
 			sys.exit("%s does not exists." % squid)
 		sys.exit()
+	else: pass
 except: pass
 
 dir_="/etc/squid3"
