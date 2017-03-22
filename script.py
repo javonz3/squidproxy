@@ -24,6 +24,7 @@ try:
 		if os.path.isfile(squid):
 			http_port = os.popen("cat %s |grep http_port").read().strip()
 			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squid))
+			sys.exit()
 		else:
 			sys.exit("%s does not exists." % squid)
 except: pass
