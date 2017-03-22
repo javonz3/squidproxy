@@ -29,7 +29,7 @@ try:
 			sys.exit("%s does not exists." % squid)
 		sys.exit()
 	else: pass
-except: pass
+except: print 'exit me'
 
 dir_="/etc/squid3"
 squid = "squid.conf"
