@@ -20,14 +20,14 @@ squid = "/etc/squid3/squid.conf"
 try:
 	arg = sys.argv[1].strip()
 	proxy = sys.argv[2].strip()
-	print arg, proxy
 	if arg == '-e' and proxy.isdigit():
 		if os.path.isfile(squid):
 			http_port = os.popen("cat %s |grep http_port" % squid).read().strip()
 			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squid))
-			sys.exit()
+			
 		else:
 			sys.exit("%s does not exists." % squid)
+		sys.exit()
 except: pass
 
 dir_="/etc/squid3"
