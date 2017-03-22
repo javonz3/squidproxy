@@ -16,20 +16,8 @@ def write_to_file(filename, text):
 		outfile.write("%s\n" % text)
 		outfile.close()
 
-squid = "/etc/squid3/squid.conf"
-try:
-	arg = sys.argv[1].strip()
-	proxy = sys.argv[2].strip()
-	if arg == '-e' and proxy.isdigit():
-		if os.path.isfile(squid):
-			http_port = os.popen("cat %s |grep http_port" % squid).read().strip()
-			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squid))
-			
-		else:
-			sys.exit("%s does not exists." % squid)
-		sys.exit()
-	else: pass
-except: print 'exit me'
+squidconf = "/etc/squid3/squid.conf"
+
 
 dir_="/etc/squid3"
 squid = "squid.conf"
@@ -47,6 +35,27 @@ for i in ip_:
 if not ips:
 	sys.exit('No valid ips found.')
 else: pass
+
+quit = False
+try:
+	arg = sys.argv[1].strip()
+	proxy = sys.argv[2].strip()
+	if arg == '-e' and proxy.isdigit():
+		if os.path.isfile(squidconf):
+			http_port = os.popen("cat %s |grep http_port" % squidconf).read().strip()
+			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squidconf))
+			quit = True
+			sys.exit()
+		else:
+			sys.exit("%s does not exists." % squidconf)
+		sys.exit()
+	else: pass
+except: pass
+
+if quit:
+	sys.exit()
+else: pass
+
 
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
