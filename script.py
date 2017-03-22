@@ -22,7 +22,7 @@ try:
 	proxy = sys.argv[2].strip()
 	if arg == '-e' and proxy.isdigit():
 		if os.path.isfile(squid):
-			http_port = os.popen("cat %s |grep http_port").read().strip()
+			http_port = os.popen("cat %s |grep http_port" % squid).read().strip()
 			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squid))
 			sys.exit()
 		else:
