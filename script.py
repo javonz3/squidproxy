@@ -20,6 +20,7 @@ squid = "/etc/squid3/squid.conf"
 try:
 	arg = sys.argv[1].strip()
 	proxy = sys.argv[2].strip()
+	print arg, proxy
 	if arg == '-e' and proxy.isdigit():
 		if os.path.isfile(squid):
 			http_port = os.popen("cat %s |grep http_port" % squid).read().strip()
