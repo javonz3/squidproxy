@@ -23,7 +23,6 @@ dir_="/etc/squid3"
 squid = "squid.conf"
 log = "Log.log"
 file_ = ".%s" % squid
-proxy = raw_input("Enter port number: ").strip()
 ip_ = os.popen("ifconfig |grep addr | awk '{print $2}' |grep addr").readlines()
 ips = []
 for i in ip_:
@@ -44,6 +43,9 @@ try:
 		if os.path.isfile(squidconf):
 			http_port = os.popen("cat %s |grep http_port" % squidconf).read().strip()
 			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squidconf))
+			os.system("service squid3 restart")
+			for ip in ips:
+				print "%s:%s" % (ip, proxy)
 			quit = True
 			sys.exit()
 		else:
@@ -55,7 +57,7 @@ except: pass
 if quit:
 	sys.exit()
 else: pass
-
+proxy = raw_input("Enter port number: ").strip()
 
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
