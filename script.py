@@ -76,10 +76,11 @@ for i in conf:
 				write_to_file(".squid2.conf", i_)
 				cnt += 1
 		else:
-			write_to_file(".squid2.conf", i)	
-		if re.search('http_port', i) and proxy.isdigit():
-			write_to_file(".squid2.conf", "http_port %s" % proxy)
-		else: pass
+			if re.search('http_port', i) and proxy.isdigit():
+				write_to_file(".squid2.conf", "http_port %s" % proxy)
+			else:
+				write_to_file(".squid2.conf", i)	
+		# else: pass
 sys.exit()
 commands="""
 rm spi
