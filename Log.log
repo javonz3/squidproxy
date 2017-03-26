@@ -1,9 +1,9 @@
-2017-03-26 07:54:27 rm spi Failure to execute.
-2017-03-26 07:54:27 mv /etc/squid3/squid.conf /etc/squid3/squid.conf.orig Failure to execute.
-2017-03-26 07:54:27 mv ".squid2.conf" /etc/squid3/squid.conf Failure to execute.
-2017-03-26 07:54:27 chmod a-w /etc/squid3/squid.conf* Failure to execute.
-2017-03-26 07:54:27 touch /etc/squid3/squid_passwd Failure to execute.
-2017-03-26 07:54:27 chown proxy /etc/squid3/squid_passwd Failure to execute.
-2017-03-26 07:54:27 initctl show-config squid3  Failure to execute.
-2017-03-26 07:54:29 Squid successfully running.
-Newly added ip:port:user:passwd 10.0.2.15:3128:test:test
+2017-03-26 09:21:18 rm spi successfully executed.
+2017-03-26 09:21:18 mv /etc/squid3/squid.conf /etc/squid3/squid.conf.orig successfully executed.
+2017-03-26 09:21:18 mv ".squid2.conf" /etc/squid3/squid.conf successfully executed.
+2017-03-26 09:21:18 chmod a-w /etc/squid3/squid.conf* successfully executed.
+2017-03-26 09:21:18 touch /etc/squid3/squid_passwd successfully executed.
+2017-03-26 09:21:18 chown proxy /etc/squid3/squid_passwd successfully executed.
+2017-03-26 09:21:18 initctl show-config squid3  successfully executed.
+2017-03-26 09:21:20 Squid successfully running.
+Newly added ip:port:user:passwd 10.0.2.15:3128:te:te
