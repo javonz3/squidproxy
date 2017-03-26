@@ -111,6 +111,7 @@ if user != 'root' and admin_passwd:
 	if not re.search('Welcome', test_login):
 		sys.exit('Invalid password!')
 	else: pass
+else: pass
 
 while True: # Repeat the process
 	adduser = raw_input("Enter your client's username: ").strip(); # asking for new username
