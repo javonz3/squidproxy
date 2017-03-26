@@ -61,6 +61,7 @@ proxy = raw_input("Enter port number: ").strip()
 if not proxy.isdigit():
 	proxy = '3128'
 else: pass
+
 if os.path.isfile(log): # test if log.log exists
 	os.remove(log); # remove log.log file
 else: pass
@@ -83,7 +84,7 @@ for i in conf:
 			else:
 				write_to_file(".squid2.conf", i)	
 		# else: pass
-# sys.exit()
+sys.exit()
 commands="""
 rm spi
 mv /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
