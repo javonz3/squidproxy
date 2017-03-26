@@ -106,7 +106,7 @@ curr_dir = os.getcwd().strip()
 
 admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
 
-if user != 'root' and admin_passwd:
+if user != 'root':
 	test_login=os.popen("./.myssh.exp %s" % admin_passwd).read()
 	if not re.search('Welcome', test_login):
 		sys.exit('Invalid password!')
@@ -135,8 +135,6 @@ os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd)); #install 
 for i in commands.split('\n'): # split commands
 	if admin_passwd:
 		outp=os.popen("./.command.exp %s %s" % (admin_passwd, i)).read()
-	else:
-		outp=os.popen("./.command2.exp %s" % i).read()
 	if re.search('command', outp) and i:
 		write_to_file(log, (date_time() + ' %s Failure to execute.' % i))
 	else:
