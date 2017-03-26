@@ -18,7 +18,7 @@ or hit enter to repeat the process
 8. Done
 
 Notes: 
-	1 Log.log file will be created name log.log.
+	1 Log.log file will be created name Log.log.
 	2. When adding new User and or password, 
 	      it should not contain space " " or not empty.
 	3. Never move or alter the script.py file or transfer to another folder.

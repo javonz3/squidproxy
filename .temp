@@ -39,7 +39,7 @@ quit = False
 try:
 	arg = sys.argv[1].strip()
 	proxy = sys.argv[2].strip()
-	if arg == '-e' and proxy.isdigit():
+	if arg == '-p' and proxy.isdigit():
 		if os.path.isfile(squidconf):
 			http_port = os.popen("cat %s |grep http_port" % squidconf).read().strip()
 			os.system("sed -i 's/%s/http_port %s/g' %s" % (http_port, proxy, squidconf))
