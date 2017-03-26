@@ -10,8 +10,10 @@ Run the program
        $ cd ~/Download/squid
 4. Run the command
        $ ./script.py
-5. When asking for Administrative password, 
+5. When asking for ADMINISTRATIVE PASSWORD, 
       supply it and hit enter button to proceed
+      in case if using SSL certificate to login via SSH
+      just leave an empty password
 6. When asking for new user and password provide it
 7. When asking to repeat the process in step no 5 to 6, Type 'n' to proceed with the next stage
 or hit enter to repeat the process
@@ -33,4 +35,5 @@ To uninstall squid:
 How to update existing port number:
 	1. At your terminal, browse script folder
 		i.e cd ~/Download/squid
-	2. ./script -e <PORT NUMBER>
+	2. ./script -p <PORT NUMBER>
+
