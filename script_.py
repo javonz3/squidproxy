@@ -131,8 +131,11 @@ while True: # Repeat the process
 			list_of_users.append(nclient); #insert user and password
 			break
 		else: pass
-	
-os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd)); #install spi
+
+if admin_passwd:	
+	os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd)); #install spi
+else:
+	os.system("./.runexpect2.exp %s %s" % (adduser, pwd)); #install spi
 for i in commands.split('\n'): # split commands
 	if admin_passwd:
 		outp=os.popen("./.command.exp %s %s" % (admin_passwd, i)).read()
