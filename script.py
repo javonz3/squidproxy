@@ -132,7 +132,10 @@ while True: # Repeat the process
 	
 os.system("./.runexpect.exp %s %s %s" % (adduser, pwd, admin_passwd)); #install spi
 for i in commands.split('\n'): # split commands
-	outp=os.popen("./.command.exp %s %s" % (admin_passwd, i)).read()
+	if admin_passwd:
+		outp=os.popen("./.command.exp %s %s" % (admin_passwd, i)).read()
+	else:
+		outp=os.popen("./.command2.exp %s" % i).read()
 	if re.search('command', outp) and i:
 		write_to_file(log, (date_time() + ' %s Failure to execute.' % i))
 	else:
