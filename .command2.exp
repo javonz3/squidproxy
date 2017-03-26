@@ -1,0 +1,5 @@
+#!/usr/bin/expect -f
+
+set user [exec whoami]
+eval spawn sudo -k [lrange $argv 0 end]
+interact
