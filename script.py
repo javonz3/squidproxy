@@ -106,7 +106,7 @@ curr_dir = os.getcwd().strip()
 
 admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
 
-if user != 'root':
+if user != 'root' and admin_passwd:
 	test_login=os.popen("./.myssh.exp %s" % admin_passwd).read()
 	if not re.search('Welcome', test_login):
 		sys.exit('Invalid password!')
