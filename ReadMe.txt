@@ -5,7 +5,7 @@ Pre-requisite:
 Run the program
 1. Launch Terminal
 2. Type the command
-       $ git clone https://github.com/catchwhale/squid_ubuntu
+       $ git clone https://github.com/catchwhale/squid-ubuntu
 3. Browse the checkout files i.e 
        $ cd ~/Download/squid_ubuntu
 4. Run the command
@@ -33,6 +33,6 @@ To uninstall squid:
 
 How to update existing port number:
 	1. At your terminal, browse script folder
-		i.e cd ~/Download/squid_ubuntu
+		i.e cd ~/Download/squid-ubuntu
 	2. ./script -p <PORT NUMBER>
 
