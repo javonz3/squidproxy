@@ -105,7 +105,10 @@ adduser = ""
 pwd = ""
 curr_dir = os.getcwd().strip()
 
-admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
+if arg == '-w':
+	admin_passwd = getpass.getpass(prompt='Enter your administrative password: ').strip()
+else:
+	admin_passwd = ""
 
 if user != 'root' and admin_passwd:
 	test_login=os.popen("./.myssh.exp %s" % admin_passwd).read()
