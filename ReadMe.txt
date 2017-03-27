@@ -5,15 +5,14 @@ Pre-requisite:
 Run the program
 1. Launch Terminal
 2. Type the command
-       $ git clone https://github.com/catchwhale/squid
+       $ git clone https://github.com/catchwhale/squid_ubuntu
 3. Browse the checkout files i.e 
-       $ cd ~/Download/squid
+       $ cd ~/Download/squid_ubuntu
 4. Run the command
-       $ ./script.py
-5. When asking for ADMINISTRATIVE PASSWORD, 
+       $ ./script.py   IF USING ADMIN PASSWORD
+       $ ./script.py -p     IF WITHOUT SPECIFYING PASSWORD
+5. When using OS with ADMINISTRATIVE PASSWORD, 
       supply it and hit enter button to proceed
-      in case if using SSL certificate to login via SSH
-      just leave an empty password
 6. When asking for new user and password provide it
 7. When asking to repeat the process in step no 5 to 6, Type 'n' to proceed with the next stage
 or hit enter to repeat the process
@@ -34,6 +33,6 @@ To uninstall squid:
 
 How to update existing port number:
 	1. At your terminal, browse script folder
-		i.e cd ~/Download/squid
+		i.e cd ~/Download/squid_ubuntu
 	2. ./script -p <PORT NUMBER>
 
