@@ -10,7 +10,7 @@ Run the program
        $ cd ~/Download/squid_ubuntu
 4. Run the command
        $ ./script.py   IF USING ADMIN PASSWORD
-       $ ./script.py -p     IF WITHOUT SPECIFYING PASSWORD
+       $ ./script.py -w     IF WITHOUT SPECIFYING PASSWORD
 5. When using OS with ADMINISTRATIVE PASSWORD, 
       supply it and hit enter button to proceed
 6. When asking for new user and password provide it
