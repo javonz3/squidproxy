@@ -1,4 +1,7 @@
 Pre-requisite:
+
+Instructions are for Ubuntu 14 (64bit)
+
 1. Install expect
    $ sudo apt-get update
    $ sudo apt-get install expect
