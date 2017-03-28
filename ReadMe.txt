@@ -1,6 +1,8 @@
 Pre-requisite:
 1. Install expect
+   $ sudo apt-get update
    $ sudo apt-get install expect
+   $ sudu apt-get install git
    
 Run the program
 1. Launch Terminal
