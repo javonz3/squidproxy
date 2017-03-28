@@ -5,18 +5,15 @@ Pre-requisite:
 Run the program
 1. Launch Terminal
 2. Type the command
-       $ git clone https://github.com/catchwhale/squid-ubuntu
+       $ git clone https://github.com/javonz3/squid-ubuntu
 3. Browse the checkout files i.e 
-       $ cd ~/Download/squid_ubuntu
+       $ cd squid_ubuntu
 4. Run the command
-       $ ./script.py   IF USING ADMIN PASSWORD
+       $ ./script.py   IF USING ADMIN PASSWORD (This may work with or without password)
        $ ./script.py -w     IF WITHOUT SPECIFYING PASSWORD
 5. When using OS with ADMINISTRATIVE PASSWORD, 
       supply it and hit enter button to proceed
-6. When asking for new user and password provide it
-7. When asking to repeat the process in step no 5 to 6, Type 'n' to proceed with the next stage
-or hit enter to repeat the process
-8. Done
+6. Done
 
 Notes: 
 	1 Log.log file will be created name Log.log.
