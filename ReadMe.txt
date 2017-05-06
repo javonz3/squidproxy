@@ -1,24 +1,24 @@
 Pre-requisite:
-
-Instructions are for Ubuntu 14 (64bit)
-
 1. Install expect
-   $ sudo apt-get update
    $ sudo apt-get install expect
-   $ sudu apt-get install git
    
 Run the program
 1. Launch Terminal
 2. Type the command
-       $ git clone https://github.com/javonz3/squid-ubuntu
+       $ git clone https://github.com/catchwhale/squid-ubuntu
 3. Browse the checkout files i.e 
-       $ cd squid_ubuntu
-4. Run the command
-       $ ./script.py   IF USING ADMIN PASSWORD (This may work with or without password)
-       $ ./script.py -w     IF WITHOUT SPECIFYING PASSWORD
+       $ cd ~/Download/squid_ubuntu
+4. Run any of the ff command
+       $ ./script.py <USERNAME> <PASSWORD> <PORT>       IF USING ADMIN PASSWORD
+       $ ./script.py <USERNAME> <PASSWORD>              IF USING ADMIN PASSWORD WITH DEFAULT PORT NUMBER 3128
+       $ ./script.py <USERNAME> <PASSWORD> <PORT> -w    IF WITHOUT SPECIFYING PASSWORD
+       $ ./script.py <USERNAME> <PASSWORD> -w           IF WITHOUT SPECIFYING PASSWORD WITH DEFAULT PORT NUMBER 3128
 5. When using OS with ADMINISTRATIVE PASSWORD, 
       supply it and hit enter button to proceed
-6. Done
+6. When asking for new user and password provide it
+7. When asking to repeat the process in step no 5 to 6, Type 'n' to proceed with the next stage
+or hit enter to repeat the process
+8. Done
 
 Notes: 
 	1 Log.log file will be created name Log.log.
