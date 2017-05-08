@@ -9,10 +9,12 @@ Run the program
 3. Browse the checkout files i.e 
        $ cd ~/Download/squid_ubuntu
 4. Run any of the ff command
-       $ ./script.py <USERNAME> <PASSWORD> <PORT>       IF USING ADMIN PASSWORD
-       $ ./script.py <USERNAME> <PASSWORD>              IF USING ADMIN PASSWORD WITH DEFAULT PORT NUMBER 3128
-       $ ./script.py <USERNAME> <PASSWORD> <PORT> -w    IF WITHOUT SPECIFYING PASSWORD
-       $ ./script.py <USERNAME> <PASSWORD> -w           IF WITHOUT SPECIFYING PASSWORD WITH DEFAULT PORT NUMBER 3128
+      $ ./script.py <USERNAME> <PASSWORD> <PORT>       IF USING ADMIN PASSWORD
+      $ ./script.py <USERNAME> <PASSWORD> <PORT>  -p     IF USING ADMIN PASSWORD to change the existing port number
+      $ ./script.py <USERNAME> <PASSWORD>              IF USING ADMIN PASSWORD WITH DEFAULT PORT NUMBER 3128
+      $ ./script.py <USERNAME> <PORT> -w    IF WITHOUT SPECIFYING PASSWORD
+      $ ./script.py <USERNAME> <PORT> -w  -p   IF WITHOUT SPECIFYING PASSWORD to change the existing port number
+      $ ./script.py <USERNAME> -w           IF WITHOUT SPECIFYING PASSWORD WITH DEFAULT PORT NUMBER 3128
 5. When using OS with ADMINISTRATIVE PASSWORD, 
       supply it and hit enter button to proceed
 6. When asking for new user and password provide it
